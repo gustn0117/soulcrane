@@ -385,6 +385,9 @@ function ContactEditor({ value, onChange }) {
       <Field label="대표번호 (Tel.)" hint="비우면 숨겨집니다.">
         <TextInput value={v.tel} onChange={(x) => set({ tel: x })} />
       </Field>
+      <Field label="주소 (Address)" hint="줄바꿈 Enter. 비우면 숨겨집니다.">
+        <TextArea rows={2} value={v.address} onChange={(x) => set({ address: x })} />
+      </Field>
 
       <h3 className="admin-subtitle" style={{ marginTop: 24 }}>SNS 링크 (비우면 버튼 숨김)</h3>
       <Field label="Instagram URL">

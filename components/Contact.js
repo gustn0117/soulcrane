@@ -32,6 +32,7 @@ export default function Contact({ data }) {
   const d = data || {};
   const email = d.email || "";
   const tel = d.tel || "";
+  const address = d.address || "";
   const headline = d.headline || "Next work,\n<em>together.</em>";
   const sub = d.sub || "";
 
@@ -81,6 +82,15 @@ export default function Contact({ data }) {
                 <div className="contact-label">Company</div>
                 <div className="contact-value">SOULCRANE</div>
               </div>
+              {address ? (
+                <div className="contact-row">
+                  <div className="contact-label">Address</div>
+                  <div
+                    className="contact-value"
+                    dangerouslySetInnerHTML={{ __html: address.replace(/\n/g, "<br/>") }}
+                  />
+                </div>
+              ) : null}
               {email ? (
                 <div className="contact-row">
                   <div className="contact-label">Email</div>
