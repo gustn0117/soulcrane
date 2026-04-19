@@ -31,7 +31,6 @@ export default function Work() {
       <div className="section-container">
         <Reveal variant="reveal-blur">
           <div className="section-head">
-            <span className="section-num">02</span>
             <h2 className="section-title">Work</h2>
             <span className="section-bar" />
           </div>

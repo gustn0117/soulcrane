@@ -1,6 +1,7 @@
 import Reveal from "./Reveal";
 
 const EMAIL = "contact@soulcrane.com";
+const TEL = "02-000-0000";
 
 // Set to "" to hide an SNS button automatically
 const SNS = {
@@ -45,7 +46,6 @@ export default function Contact() {
       <div className="section-container">
         <Reveal variant="reveal-blur">
           <div className="section-head">
-            <span className="section-num">03</span>
             <h2 className="section-title">Contact</h2>
             <span className="section-bar" />
           </div>
@@ -55,8 +55,8 @@ export default function Contact() {
           <Reveal variant="reveal">
             <div>
               <h3 className="contact-headline">
-                다음 작품을<br />
-                <span className="accent">함께</span> 만들어 보세요.
+                Next work,<br />
+                <span className="accent">together.</span>
               </h3>
               <p className="contact-sub">
                 기획, 제작, 협업 문의는 언제든 환영합니다.<br />
@@ -83,6 +83,14 @@ export default function Contact() {
                   <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
                 </div>
               </div>
+              {TEL && (
+                <div className="contact-row">
+                  <div className="contact-label">Tel.</div>
+                  <div className="contact-value">
+                    <a href={`tel:${TEL.replace(/[^0-9+]/g, "")}`}>{TEL}</a>
+                  </div>
+                </div>
+              )}
               <div className="contact-row">
                 <div className="contact-label">Field</div>
                 <div className="contact-value">Film · Drama · Digital Content</div>

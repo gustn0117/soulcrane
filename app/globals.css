@@ -256,7 +256,7 @@ button {
 
 /* ========== SECTIONS ========== */
 .section {
-  padding: 160px 0;
+  padding: 220px 0;
   position: relative;
 }
 .section.alt {
@@ -676,9 +676,9 @@ button {
     border-bottom: 1px solid var(--border);
   }
   .section {
-    padding: 110px 0;
+    padding: 150px 0;
   }
   .section-head {
-    margin-bottom: 56px;
+    margin-bottom: 64px;
   }
 }

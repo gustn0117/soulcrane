@@ -24,7 +24,6 @@ export default function Business() {
       <div className="section-container">
         <Reveal variant="reveal-blur">
           <div className="section-head">
-            <span className="section-num">01</span>
             <h2 className="section-title">Business</h2>
             <span className="section-bar" />
           </div>
