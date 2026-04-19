@@ -1,14 +1,8 @@
 import Reveal from "./Reveal";
 
-const EMAIL = "contact@soulcrane.com";
-const TEL = "02-000-0000";
-
-// Set to "" to hide an SNS button automatically
-const SNS = {
-  instagram: "",
-  youtube: "",
-  x: "",
-};
+function textToHtml(s) {
+  return (s || "").replace(/\n/g, "<br/>");
+}
 
 function InstagramIcon() {
   return (
@@ -34,11 +28,17 @@ function XIcon() {
   );
 }
 
-export default function Contact() {
+export default function Contact({ data }) {
+  const d = data || {};
+  const email = d.email || "";
+  const tel = d.tel || "";
+  const headline = d.headline || "Next work,\n<em>together.</em>";
+  const sub = d.sub || "";
+
   const snsItems = [
-    { key: "instagram", url: SNS.instagram, label: "Instagram", Icon: InstagramIcon },
-    { key: "youtube", url: SNS.youtube, label: "YouTube", Icon: YoutubeIcon },
-    { key: "x", url: SNS.x, label: "X", Icon: XIcon },
+    { key: "instagram", url: d.instagram, label: "Instagram", Icon: InstagramIcon },
+    { key: "youtube", url: d.youtube, label: "YouTube", Icon: YoutubeIcon },
+    { key: "x", url: d.x, label: "X", Icon: XIcon },
   ].filter((s) => s.url);
 
   return (
@@ -54,20 +54,24 @@ export default function Contact() {
         <div className="contact-grid">
           <Reveal variant="reveal">
             <div>
-              <h3 className="contact-headline">
-                Next work,<br />
-                <span className="accent">together.</span>
-              </h3>
-              <p className="contact-sub">
-                기획, 제작, 협업 문의는 언제든 환영합니다.<br />
-                아래 메일로 연락 주시면 빠르게 회신 드리겠습니다.
-              </p>
-              <a className="contact-cta" href={`mailto:${EMAIL}`}>
-                CONTACT US
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
+              <h3
+                className="contact-headline"
+                dangerouslySetInnerHTML={{ __html: textToHtml(headline) }}
+              />
+              {sub ? (
+                <p
+                  className="contact-sub"
+                  dangerouslySetInnerHTML={{ __html: textToHtml(sub) }}
+                />
+              ) : null}
+              {email ? (
+                <a className="contact-cta" href={`mailto:${email}`}>
+                  CONTACT US
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+              ) : null}
             </div>
           </Reveal>
 
@@ -77,20 +81,22 @@ export default function Contact() {
                 <div className="contact-label">Company</div>
                 <div className="contact-value">SOULCRANE</div>
               </div>
-              <div className="contact-row">
-                <div className="contact-label">Email</div>
-                <div className="contact-value">
-                  <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              {email ? (
+                <div className="contact-row">
+                  <div className="contact-label">Email</div>
+                  <div className="contact-value">
+                    <a href={`mailto:${email}`}>{email}</a>
+                  </div>
                 </div>
-              </div>
-              {TEL && (
+              ) : null}
+              {tel ? (
                 <div className="contact-row">
                   <div className="contact-label">Tel.</div>
                   <div className="contact-value">
-                    <a href={`tel:${TEL.replace(/[^0-9+]/g, "")}`}>{TEL}</a>
+                    <a href={`tel:${tel.replace(/[^0-9+]/g, "")}`}>{tel}</a>
                   </div>
                 </div>
-              )}
+              ) : null}
               <div className="contact-row">
                 <div className="contact-label">Field</div>
                 <div className="contact-value">Film · Drama · Digital Content</div>

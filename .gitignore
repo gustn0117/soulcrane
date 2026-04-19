@@ -11,3 +11,5 @@ dist
 .vercel
 next-env.d.ts
 persistent-data
+/data
+
