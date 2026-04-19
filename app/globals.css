@@ -194,8 +194,10 @@ button {
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 112px 48px 0;
+  gap: 20px;
+  padding: 112px 80px 0;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 .hero-mark {
   font-size: 11px;
@@ -223,23 +225,25 @@ button {
 }
 
 .hero-stage {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 120px;
+  position: relative;
   z-index: 5;
-  padding: 0 48px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-width: 1200px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 32px 140px;
+  gap: 22px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .hero-stage-rule {
   width: 56px;
   height: 1px;
   background: var(--accent);
   opacity: 0.75;
-  margin-bottom: 6px;
+  margin: 0 auto 6px;
 }
 .hero-kicker {
   font-size: 12px;
@@ -287,11 +291,13 @@ button {
 .hero-footer {
   position: absolute;
   bottom: 36px;
-  left: 48px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   color: var(--text-muted);
 }
 .hero-scroll-label {
@@ -300,45 +306,43 @@ button {
   text-transform: uppercase;
 }
 .hero-scroll-line {
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent-dim), transparent);
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, var(--accent-dim), transparent);
   position: relative;
   overflow: hidden;
 }
 .hero-scroll-line::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -40%;
-  width: 40%;
-  height: 100%;
-  background: var(--accent);
-  animation: heroScroll 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  left: 0;
+  top: -60%;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, var(--accent));
+  animation: heroScroll 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 @keyframes heroScroll {
   0% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   100% {
-    transform: translateX(300%);
+    transform: translateY(250%);
   }
 }
 
 @media (max-width: 720px) {
   .hero-bar {
-    padding: 96px 20px 0;
+    padding: 88px 20px 0;
   }
   .hero-bar-caption {
     display: none;
   }
   .hero-stage {
-    padding: 0 20px;
-    bottom: 96px;
-    gap: 14px;
+    padding: 100px 20px 120px;
+    gap: 16px;
   }
   .hero-footer {
-    left: 20px;
     bottom: 28px;
   }
   .hero-video {
