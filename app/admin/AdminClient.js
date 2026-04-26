@@ -296,7 +296,7 @@ function WorkEditor({ value, onChange }) {
     onChange(list.map((w, idx) => (idx === i ? { ...w, ...patch } : w)));
   };
   const addItem = () =>
-    onChange([...list, { type: "Film", title: "", date: "", status: "", image: "" }]);
+    onChange([...list, { type: "Film", title: "", date: "", status: "", image: "", description: "" }]);
   const delItem = (i) => onChange(list.filter((_, idx) => idx !== i));
   const moveItem = (i, d) => {
     const j = i + d;
@@ -354,10 +354,18 @@ function WorkEditor({ value, onChange }) {
               <TextInput value={w.date} onChange={(x) => setItem(i, { date: x })} />
             </Field>
 
-            <Field label="포스터 이미지 (선택)">
+            <Field label="포스터 이미지 (선택)" hint="3:4 세로 비율 권장 — 다른 비율도 표시되지만 그리드에서 잘릴 수 있습니다.">
               <ImageUpload
                 value={w.image}
                 onChange={(x) => setItem(i, { image: x })}
+              />
+            </Field>
+
+            <Field label="설명 (모달에 노출)" hint="썸네일 클릭 시 열리는 상세 모달에 표시됩니다. 줄바꿈은 Enter.">
+              <TextArea
+                rows={4}
+                value={w.description}
+                onChange={(x) => setItem(i, { description: x })}
               />
             </Field>
           </div>
