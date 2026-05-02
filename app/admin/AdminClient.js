@@ -7,6 +7,7 @@ const TABS = [
   { id: "business", label: "Business" },
   { id: "work", label: "Work" },
   { id: "contact", label: "Contact" },
+  { id: "seo", label: "SEO" },
 ];
 
 export default function AdminClient({ initialAuthed, initialContent }) {
@@ -156,6 +157,9 @@ function Dashboard({ content, setContent, onLogout }) {
         )}
         {tab === "contact" && (
           <ContactEditor value={content.contact} onChange={(v) => update({ contact: v })} />
+        )}
+        {tab === "seo" && (
+          <SeoEditor value={content.seo} onChange={(v) => update({ seo: v })} />
         )}
       </main>
 
@@ -407,6 +411,49 @@ function ContactEditor({ value, onChange }) {
       <Field label="X (Twitter) URL">
         <TextInput value={v.x} onChange={(x) => set({ x: x })} />
       </Field>
+    </section>
+  );
+}
+
+function SeoEditor({ value, onChange }) {
+  const v = value || {};
+  const set = (patch) => onChange({ ...v, ...patch });
+  return (
+    <section className="admin-section">
+      <h2 className="admin-section-title">SEO · 공유 미리보기</h2>
+      <p className="admin-hint-block">
+        · 카카오톡, 페이스북, 트위터 등에서 링크 공유 시 노출되는 정보입니다.<br />
+        · 미리보기 이미지를 비워두면 자동 생성된 기본 OG 이미지가 사용됩니다.<br />
+        · 권장 이미지 사이즈: <strong>1200 × 630</strong> (1.91:1).
+      </p>
+
+      <Field label="페이지 제목 (Title)">
+        <TextInput value={v.title} onChange={(x) => set({ title: x })} />
+      </Field>
+      <Field label="페이지 설명 (Description)" hint="검색 결과 / 공유 시 본문 미리보기로 사용됩니다.">
+        <TextArea rows={3} value={v.description} onChange={(x) => set({ description: x })} />
+      </Field>
+      <Field label="사이트 URL" hint="OG 절대경로 변환에 사용됩니다. 예: https://soulcrane.co.kr">
+        <TextInput value={v.siteUrl} onChange={(x) => set({ siteUrl: x })} />
+      </Field>
+
+      <Field label="공유 미리보기 이미지 (OG Image)" hint="1200×630 권장. 비우면 SOULCRANE 기본 이미지가 자동으로 사용됩니다.">
+        <ImageUpload
+          value={v.ogImage}
+          onChange={(x) => set({ ogImage: x })}
+        />
+      </Field>
+
+      <div style={{ marginTop: 12 }}>
+        <a
+          className="admin-btn"
+          href={v.ogImage || "/opengraph-image"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          현재 미리보기 이미지 열기 ↗
+        </a>
+      </div>
     </section>
   );
 }
